@@ -1,8 +1,13 @@
 import React from 'react';
 
-const ExpenseList = () => {
+const ExpenseList = ({ expenses,currency }) => {
+    let sum = 0;
+    
+
     return (  
-        <div>ExpenseList</div>
+        <div>{expenses.map((res) => {
+            return <li>{res.amount}</li>
+        })}</div>
     );
 }
  
