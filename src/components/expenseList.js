@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ExpenseList = ({ expenses, currency }) => {
+const ExpenseList = ({ expenses,currency,onDelete }) => {
     let sum = 0;
     const expensesListEl = expenses.map((expense, index) => {
         sum += expense.amount * 1;
@@ -13,9 +13,15 @@ const ExpenseList = ({ expenses, currency }) => {
                         {currency}
                     </strong>
                 </div>
+                <button 
+                className="btn btn-danger btn-sm btn-rm"
+                onClick={() => {onDelete(index)}}
+                >
+                Remove                
+                </button>
             </div>
-        )
-    })
+        );
+    });
 
     return (
         <> 

@@ -16,7 +16,12 @@ class App extends Component {
         let { expenses } = this.state;
         expenses.push(expense);
         this.setState({ expenses })
-    }
+    };
+    deleteExpense = id => {
+        let { expenses } = this.state;
+        expenses.splice(id,1);
+        this.setState( { expenses } )
+    };
 
     render() {
         const { expenses,currency } = this.state;
@@ -34,6 +39,7 @@ class App extends Component {
                             <ExpenseList 
                             currency={currency}
                             expenses={expenses}
+                            onDelete={this.deleteExpense}
                             />
                         </div>
                     </div>

@@ -1,3 +1,11 @@
+.btn-rm {
+    padding: 0.005rem 0.3rem;
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    z-index: 1;
+}
+
 .list-group-item {
     margin-bottom: 15px;
 }
