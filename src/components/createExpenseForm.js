@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 
 const initialState = {
-    error: [],
+    errors: [],
     expense: {
-        amount: '',
-        comment: ''
+        amount: "",
+        comment: "",
     }
-}
+};
 
 class CreateExpenseForm extends Component {
     constructor(props) {
@@ -14,7 +14,7 @@ class CreateExpenseForm extends Component {
         this.state = initialState;
     }
 
-    onFieldChange = (e) => {
+    onFieldChange = e => {
         let el = e.target;
         this.setState({
             expense: {
@@ -28,8 +28,9 @@ class CreateExpenseForm extends Component {
         // Doing Validation 
         let { amount } = this.state.expense;
         if (!amount || isNaN(amount)) {
+            let error = "Invalid Input";
             this.setState({
-                error: ["Invalid Input"]
+                errors: [error]
             })
         }
         this.props.onCreate(this.state.expense);
@@ -39,42 +40,44 @@ class CreateExpenseForm extends Component {
 
     render() {
         const { expense, error } = this.state;
-        const { onCreate } = this.props;
-        //console.log(expense["amount"]);
-
         return (
             <>
-                <div className="cef">
-                    <div className="cef--errors">
-                        {error && error.map((e, index) => {
-                            return <p key={index}>{e}</p>
-                        })}
-                    </div>
-                    <div className="cef--field">
-                        <label>Amount</label>
+                <fieldset>
+                    <legend>Create Expense</legend>
+
+                    {error && error.map((e, index) => {
+                        return <p key={index}>{e}</p>
+                    })}
+
+                    <div className="form-group">
+                        <label htmlFor="amount">Amount</label>
                         <input
                             id="amount"
                             type="Number"
                             placeholder="eg 300"
+                            className="form-control"
                             onChange={this.onFieldChange}
                             value={expense["amount"]}
                         />
                     </div>
-                    <div className="cef--field">
-                        <label>Comment</label>
+                    <div className="form-group">
+                        <label htmlFor="comment">Comment</label>
                         <input
                             id="comment"
                             type="text"
                             placeholder="eg Restaurant"
+                            className="form-control"
                             onChange={this.onFieldChange}
                             value={expense["comment"]}
                         />
                     </div>
-                    <button onClick={this.onSubmitClick}>Submit</button>
-                </div>
-
+                    <button
+                        className="btn btn-primary"
+                        onClick={this.onSubmitClick}
+                        type="button"
+                    >Create</button>
+                </fieldset>
             </>
-
         );
     }
 }
