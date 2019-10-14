@@ -37,11 +37,16 @@ class CreateExpenseForm extends Component {
 
 
     render() {
-        const {expense} = this.state;
+        const { expense,error } = this.state;
         const { onCreate } = this.props;
         return (
             <>
                 <div className="cef">
+                    <div className="cef--errors">
+                       {error && error.map((e) => {
+                           return <p>{e}</p>
+                       })};
+                    </div>
                     <div className="cef--field">
                         <label>Amount</label>
                         <input 
