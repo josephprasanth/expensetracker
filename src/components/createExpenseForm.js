@@ -4,6 +4,7 @@ class CreateExpenseForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            error: [],
             expense: {
                 amount: '',
                 comment: ''
@@ -22,13 +23,22 @@ class CreateExpenseForm extends Component {
     }
 
     onSubmitClick = () => {
-       console.log('e');
+       // Doing Validation 
+       let { amount,comment } = this.state.expense;
+       if (!amount || !comment) {
+           this.setState({ 
+               error: ["Invalid Input"]
+           })
+           console.log(this.state.error);
+           
+       }
        
     }
 
 
     render() {
         const {expense} = this.state;
+        const { onCreate } = this.props;
         return (
             <>
                 <div className="cef">
@@ -52,8 +62,9 @@ class CreateExpenseForm extends Component {
                         value={expense["comment"]} 
                         />
                     </div>
+                    <button onClick={this.onSubmitClick}>Submit</button>
                 </div>
-                <button onClick={this.onSubmitClick}>Submit</button>
+               
             </>
 
         );
