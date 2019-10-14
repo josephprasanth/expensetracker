@@ -5,24 +5,55 @@ class CreateExpenseForm extends Component {
         super(props);
         this.state = {
             expense: {
-                amount: null,
-                comment: null
+                amount: '',
+                comment: ''
             }
         }
     }
+    
+    onFieldChange = (e) => {
+          let el = e.target;
+          this.setState({
+              expense: {
+                ...this.state.expense, [el.id] : el.value
+              }
+          }, () => console.log(this.state)
+          );
+    }
+
+    onSubmitClick = () => {
+       console.log('e');
+       
+    }
+
+
     render() {
+        const {expense} = this.state;
         return (
             <>
                 <div className="cef">
                     <div className="cef--field">
                         <label>Amount</label>
-                        <input type="Number" />
+                        <input 
+                        id="amount" 
+                        type="Number"
+                        placeholder="eg 300"
+                        onChange={this.onFieldChange}
+                        value={expense["amount"]}  
+                        />
                     </div>
                     <div className="cef--field">
                         <label>Comment</label>
-                        <input type="text" />
+                        <input 
+                        id="comment"                       
+                        type="text"
+                        placeholder="eg Restaurant" 
+                        onChange={this.onFieldChange}
+                        value={expense["comment"]} 
+                        />
                     </div>
                 </div>
+                <button onClick={this.onSubmitClick}>Submit</button>
             </>
 
         );
