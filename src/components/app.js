@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import CreateExpenseForm from './createExpenseForm';
+import Navbar from './navbar';
 
 class App extends Component {
     constructor(props) {
@@ -18,6 +19,7 @@ class App extends Component {
     render() { 
         return ( 
             <div>
+            <Navbar />
             <CreateExpenseForm 
             onCreate={this.createExpense}
             />
