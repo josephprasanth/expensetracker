@@ -42,6 +42,7 @@ class App extends Component {
                             onDelete={this.deleteExpense}
                             />
                         </div>
+                        <h1>Testing</h1>
                     </div>
                 </div>
             </>
